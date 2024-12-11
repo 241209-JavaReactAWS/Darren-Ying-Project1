@@ -24,10 +24,11 @@ Admin can manage items globally.
 2. Frontend Mockups (HTML/CSS):
 Design separate views for:
 Login page.
+
 Item management dashboard.
 Admin panel for managing items.
 
-3. Workflow Overview:
+4. Workflow Overview:
 Login Workflow:
 User enters credentials -> Backend validates -> React saves token -> Redirect to dashboard.
 Item CRUD Workflow:
