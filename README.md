@@ -1,8 +1,7 @@
 # Darren-Ying-Project1
 
-_## 1. Some initial thoughts on architectural plan: 
-_
-```
+## 1. Some initial thoughts on architectural plan: 
+
 **Backend (Spring Boot):**
 Framework: Spring Boot (with modules like Spring Web for REST APIs and Spring Data JPA for database interaction).
 Database: Use H2 for simplicity during development. You can later switch to PostgreSQL if required.
@@ -14,7 +13,7 @@ HTML and CSS mockups: Due early in the project to visualize the design.
 React SPA: Dynamic components for CRUD and authentication functionalities.
 HTTP Client: Use Axios or Fetch for API calls.
 
-_2.User Stories:_
+## 2.User Stories:
 Authentication:
 Log in and out with proper error handling.
 Role-specific views and permissions.
@@ -22,13 +21,13 @@ CRUD Operations:
 Standard user can interact with items.
 Admin can manage items globally.
 
-3. Frontend Mockups (HTML/CSS):
+## 3. Frontend Mockups (HTML/CSS):
 Design separate views for:
 Login page.
 Item management dashboard.
 Admin panel for managing items.
 
-4. Workflow Overview:
+## 4. Workflow Overview:
 Login Workflow:
 User enters credentials -> Backend validates -> React saves token -> Redirect to dashboard.
 Item CRUD Workflow:
