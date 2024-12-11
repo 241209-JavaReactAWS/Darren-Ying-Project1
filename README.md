@@ -13,7 +13,7 @@ HTML and CSS mockups: Due early in the project to visualize the design.
 React SPA: Dynamic components for CRUD and authentication functionalities.
 HTTP Client: Use Axios or Fetch for API calls.
 
-User Stories:
+2.User Stories:
 Authentication:
 Log in and out with proper error handling.
 Role-specific views and permissions.
@@ -21,10 +21,9 @@ CRUD Operations:
 Standard user can interact with items.
 Admin can manage items globally.
 
-2. Frontend Mockups (HTML/CSS):
+3. Frontend Mockups (HTML/CSS):
 Design separate views for:
 Login page.
-
 Item management dashboard.
 Admin panel for managing items.
 
