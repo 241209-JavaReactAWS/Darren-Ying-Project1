@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dog Adoption Login</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Dog Adoption Portal</h1>
+    
+    <!-- Login Form -->
+    <div class="login-form">
+      <h2>Login</h2>
+      <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <label for="role">Role:</label>
+        <select id="role" name="role" required>
+          <option value="">Select Role</option>
+          <option value="admin">Admin</option>
+          <option value="user">User</option>
+        </select>
+        
+        <button type="submit">Login</button>
+      </form>
+    </div>
+    
+    <!-- Dog Adoption Section (Visible after login) -->
+    <div id="adoptionSection" class="adoption-section" style="display: none;">
+      <h2>Dog Adoption</h2>
+      <form id="adoptionForm">
+        <label for="dogBreed">Dog Breed:</label>
+        <select id="dogBreed" name="dogBreed" required>
+          <option value="labrador">Labrador</option>
+          <option value="bulldog">Bulldog</option>
+          <option value="poodle">Poodle</option>
+          <option value="beagle">Beagle</option>
+        </select>
+        
+        <label for="dogName">Dog Name:</label>
+        <select id="dogName" name="dogName" required>
+          <!-- Dog names will be updated based on breed selection -->
+        </select>
+        
+        <label for="adoptionStatus">Adoption Status:</label>
+        <select id="adoptionStatus" name="adoptionStatus" required>
+          <option value="available">Available</option>
+          <option value="adopted">Adopted</option>
+        </select>
+        
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
