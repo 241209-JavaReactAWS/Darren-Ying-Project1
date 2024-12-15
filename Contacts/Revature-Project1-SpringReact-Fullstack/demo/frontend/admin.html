@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Adoption Admin Panel</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <header>
+        <h1>Admin</h1>
+        <p>Dog Dashboard</p>
+    </header>
+
+    <section class="admin-panel">
+        <!-- Create New Dog Button -->
+        <div class="admin-actions">
+            <button class="create-dog-btn">Create New Dog</button>
+        </div>
+
+        <!-- Dog Table -->
+        <table class="dog-table">
+            <thead>
+                <tr>
+                    <th>Dog Tag</th>
+                    <th>Breed</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Color</th>
+                    <th>Adoption Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#12345</td>
+                    <td>Golden Retriever</td>
+                    <td>2 years</td>
+                    <td>Male</td>
+                    <td>Golden</td>
+                    <td>
+                        <select class="adoption-status">
+                            <option value="Available">Available</option>
+                            <option value="Adopted">Adopted</option>
+                            <option value="Pending">Pending</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="delete-btn">Delete</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>#23456</td>
+                    <td>Beagle</td>
+                    <td>3 years</td>
+                    <td>Female</td>
+                    <td>Tri-color</td>
+                    <td>
+                        <select class="adoption-status">
+                            <option value="Available">Available</option>
+                            <option value="Adopted">Adopted</option>
+                            <option value="Pending">Pending</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="delete-btn">Delete</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>#34567</td>
+                    <td>German Shepherd</td>
+                    <td>4 years</td>
+                    <td>Male</td>
+                    <td>Black and Tan</td>
+                    <td>
+                        <select class="adoption-status">
+                            <option value="Available">Available</option>
+                            <option value="Adopted">Adopted</option>
+                            <option value="Pending">Pending</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="delete-btn">Delete</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>#45678</td>
+                    <td>Bulldog</td>
+                    <td>5 years</td>
+                    <td>Female</td>
+                    <td>White and Brown</td>
+                    <td>
+                        <select class="adoption-status">
+                            <option value="Available">Available</option>
+                            <option value="Adopted">Adopted</option>
+                            <option value="Pending">Pending</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="delete-btn">Delete</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>#56789</td>
+                    <td>Poodle</td>
+                    <td>1 year</td>
+                    <td>Male</td>
+                    <td>White</td>
+                    <td>
+                        <select class="adoption-status">
+                            <option value="Available">Available</option>
+                            <option value="Adopted">Adopted</option>
+                            <option value="Pending">Pending</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="delete-btn">Delete</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>#67890</td>
+                    <td>Dachshund</td>
+                    <td>6 years</td>
+                    <td>Male</td>
+                    <td>Brown</td>
+                    <td>
+                        <select class="adoption-status">
+                            <option value="Available">Available</option>
+                            <option value="Adopted">Adopted</option>
+                            <option value="Pending">Pending</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="delete-btn">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+</body>
+</html>
