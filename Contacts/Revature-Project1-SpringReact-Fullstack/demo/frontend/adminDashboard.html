@@ -11,7 +11,6 @@
             margin: 0;
             padding: 0;
             background: linear-gradient(to right, rgba(0, 255, 30, 0.533), #a0681f);
-            display: flex;
             justify-content: center; /* Center horizontally */
             align-items: center;     /* Center vertically */
             height: 50vh;
@@ -23,7 +22,7 @@
             color: #8A2BE2; /* Purple */
             border: 3px solid #FF4500; /* Add a vibrant border (orange) */
             padding: 10px 20px;
-            font-size: 1.7rem;
+            font-size: 1rem;
             text-align: center;
             border-radius: 10px;
             width: fit-content;
@@ -45,7 +44,6 @@
     
         /* Dog Card Container */
         #dog-container {
-            width: 60%;
             background-color: #ffffff;
             padding: 20px;
             border: 2px solid #FF4500;
@@ -59,8 +57,6 @@
             justify-content: space-between;
             align-items: center;
             border: 2px solid #D3D3D3; /* Light gray border */
-            margin: 10px 0;
-            padding: 15px;
             border-radius: 5px;
             background-color: #F8F8F8; /* Light background */
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
@@ -92,6 +88,7 @@
         /* Navigation Styling */
         nav {
             margin-bottom: 20px;
+            align-items: center;
         }
     
         nav a {
@@ -115,8 +112,8 @@
     </header>
     <div>
         <nav>
-            <a href="#" id="dogs-link" class="active">Dogs</a>
-            <a href="#" id="form-link">Form</a>
+            <a href="adminDashboard.html" id="dogs-link" class="active">Dogs</a>
+            <a href="createDog.html" id="form-link">Form</a>
         </nav>
         <div>
             <h2>Dogs Shelter</h2>

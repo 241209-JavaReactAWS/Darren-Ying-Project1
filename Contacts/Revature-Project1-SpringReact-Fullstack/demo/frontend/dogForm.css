@@ -1,0 +1,90 @@
+/* General Reset for Box Sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header Styling */
+header {
+    text-align: center;
+    font-size: 2rem;
+    margin: 50px 0;
+    color: blueviolet;
+    font-family: Arial, sans-serif;
+}
+
+/* Navigation Styling */
+nav {
+    background-color: bisque;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a.active {
+    color: blueviolet;
+}
+
+/* Form Container Styling */
+#root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 200px); /* Full height minus header/nav spacing */
+}
+
+/* Form Styling */
+form {
+    background-color: bisque;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    font-family: Arial, sans-serif;
+}
+
+form input,
+form select,
+form button {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form input[type="checkbox"] {
+    width: auto;
+}
+
+form label {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+form button {
+    background-color: blueviolet;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: darkviolet;
+}
+
+/* Div Styling */
+div {
+    box-sizing: border-box;
+}

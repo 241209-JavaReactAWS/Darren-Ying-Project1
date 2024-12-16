@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Dog Page</title>
+    <link rel="stylesheet" href="./dogForm.css">
+</head>
+<body>
+    <header>
+        Adding a New Dog
+    </header>
+
+    <div id="root">
+        <div>
+            <nav>
+            <a href="adminDashboard.html" id="dogs-link" class="active">Dogs</a>
+            <a href="#" id="form-link">Form</a>
+        </nav>
+
+        <form>
+            <input name="name" placeholder="Name">
+            <select>
+                <option value>---Select Breed---</option>
+                <option value="boxer">Boxer</option>
+                <option value="bullDog">Bulldog</option>
+                <option value="Chihwahwa">Chihwahwa</option>
+                <option value="German Shepherd">German Shepherd</option>
+                <option value="Dolmatian">Dolmatian</option>
+                <option value="Golden Retriver">Golden Retriver</option>
+            </select>
+
+            <label>
+                "Adopted: "
+                <input type="checkbox" name="adopted">       
+            </label>
+            <div>
+                <button type="button">Create Dog</button>
+                <button type="reset">Reset</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</body>
+</html>
