@@ -1,0 +1,57 @@
+package com.revature.demo.controller;
+
+import com.revature.demo.service.DogService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import com.revature.demo.model.Dog;
+import com.revature.demo.repository.DogRepository;
+
+
+import java.util.List;
+
+
+@RestController
+@RequestMapping("/dogs")  // Base URL for this controller
+@CrossOrigin(origins = "http://127.0.0.1:5500")
+public class DogController {
+
+    @Autowired
+    private DogService dogService;
+
+    @GetMapping  // Endpoint: /dogs
+    public List<Dog> getAllDogs() {
+        return dogService.getAllDogs();
+    }
+
+
+    @PostMapping("/addDog")
+    public Dog addDog(@RequestBody Dog newDog) {
+        return dogService.addDog(newDog);
+    }
+
+
+    // delete dog by id
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteDog(@PathVariable int id) {
+        dogService.deleteDog(id);
+    }
+
+    // update dog by id (put)
+    @PutMapping("/{id}")
+    public ResponseEntity<Dog> updateDog(@PathVariable int id, @RequestBody Dog dogDetails) {
+        try {
+            Dog updatedDog = dogService.updateDog(id, dogDetails);
+            return ResponseEntity.ok(updatedDog);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();  // Else Dog not found
+        }
+    }
+
+
+
+
+}
+
