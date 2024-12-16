@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Shelter Dashboard</title>
+    <style>
+        /* Global Page Styling */
+        body {
+            font-family: 'Comic Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, rgba(0, 255, 30, 0.533), #a0681f);
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center;     /* Center vertically */
+            height: 50vh;
+            flex-direction: column;
+        }
+    
+        /* Header Styling */
+        header {
+            color: #8A2BE2; /* Purple */
+            border: 3px solid #FF4500; /* Add a vibrant border (orange) */
+            padding: 10px 20px;
+            font-size: 1.7rem;
+            text-align: center;
+            border-radius: 10px;
+            width: fit-content;
+            margin: 20px auto; /*add spacing around */
+            background-color: #d2a1a1; /* White background */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+        }
+    
+        h2 {
+            color: #8A2BE2; /* Purple */
+     
+            padding: 10px 20px;
+            display: flexbox;
+            text-align: justify;
+            font-size: 2.5rem;
+            width: fit-content;
+            margin: 20px auto;
+        }
+    
+        /* Dog Card Container */
+        #dog-container {
+            width: 60%;
+            background-color: #ffffff;
+            padding: 20px;
+            border: 2px solid #FF4500;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        /* Individual Dog Card */
+        .dog-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid #D3D3D3; /* Light gray border */
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #F8F8F8; /* Light background */
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+    
+        .dog-card:hover {
+            transform: scale(1.02); /* Slight zoom on hover */
+            border-color: #8A2BE2; /* Purple border on hover */
+        }
+    
+        /* Buttons */
+        button {
+            margin-left: 10px;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #8A2BE2; /* Purple button background */
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+    
+        button:hover {
+            background-color: #6A1EBB; /* Darker purple on hover */
+        }
+    
+        /* Navigation Styling */
+        nav {
+            margin-bottom: 20px;
+        }
+    
+        nav a {
+            text-decoration: solid;
+            color: #FF4500; /* Orange */
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+    
+        nav a:hover {
+            color: #8A2BE2; /* Purple on hover */
+        }
+    </style>
+    
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Dog Shelter Admin Dashboard!</h1>
+    </header>
+    <div>
+        <nav>
+            <a href="#" id="dogs-link" class="active">Dogs</a>
+            <a href="#" id="form-link">Form</a>
+        </nav>
+        <div>
+            <h2>Dogs Shelter</h2>
+            <div id="dog-container"></div> <!-- Container to append dog data -->
+        </div>
+    </div>
+    <script src="adminDashboard.js"></script>
+</body>
+</html>

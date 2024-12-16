@@ -22,6 +22,18 @@
                 
                 <label for="password">Password:</label>
                 <input type="password" id="password" placeholder="Enter your password">
+
+                <select>
+                    <option>
+                        Select Role
+                    </option>
+                    <option>
+                        Admin
+                    </option>
+                    <option>
+                        User
+                    </option>
+                </select> 
                 
                 <button id="login-button" class="submit-button">Log In</button>
             </div>
@@ -35,8 +47,9 @@
             <button id="logout-button">Log Out</button>
         </header>
         <main>
-            <h2>Dog List</h2>
             <div id="dog-list"></div>
+            <h2>Dog List</h2>
+           
         </main>
     </div>
 
@@ -44,6 +57,6 @@
         <p>&copy; 2024 Dog Shelter App. All Rights Reserved.</p>
     </footer>
 
-    <script type="module" src="js/app.js"></script>
+    <script type="module" src="./app.js"></script>
 </body>
 </html>

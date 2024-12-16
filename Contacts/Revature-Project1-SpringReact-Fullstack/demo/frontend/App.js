@@ -2,7 +2,7 @@
 const landingPage = document.getElementById('landing-page');
 const dashboard = document.getElementById('dashboard');
 const loginButton = document.getElementById('login-button');
-const logoutButton = document.getElementById('logout-button');
+//const logoutButton = document.getElementById('logout-button');
 const dogListContainer = document.getElementById('dog-list');
 const usernameInput = document.getElementById('username');
 const passwordInput = document.getElementById('password');
@@ -62,7 +62,7 @@ const handleLogin = async () => {
 
     try {
         // Send login request to backend
-        const response = await fetch(`${API_BASE_URL}/login`, {
+        const response = await fetch(`${API_BASE_URL}/users/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -88,18 +88,18 @@ const handleLogin = async () => {
     }
 };
 
-// Handle Logout
-const handleLogout = () => {
-    dashboard.style.display = 'none'; // Hide dashboard
-    landingPage.style.display = 'block'; // Show landing page
+// // Handle Logout
+// const handleLogout = () => {
+//     dashboard.style.display = 'none'; // Hide dashboard
+//     landingPage.style.display = 'block'; // Show landing page
 
-    // Clear username and password inputs
-    usernameInput.value = '';
-    passwordInput.value = '';
-};
+//     // Clear username and password inputs
+//     usernameInput.value = '';
+//     passwordInput.value = '';
+// };
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
     loginButton.addEventListener('click', handleLogin);
-    logoutButton.addEventListener('click', handleLogout);
+   // logoutButton.addEventListener('click', handleLogout);
 });

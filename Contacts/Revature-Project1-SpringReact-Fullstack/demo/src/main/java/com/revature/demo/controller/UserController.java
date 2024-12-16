@@ -10,12 +10,18 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins = "http://127.0.0.1:5500")   // Live Server IP
+@CrossOrigin(origins = "http://127.0.0.1:5500/Contacts/Revature-Project1-SpringReact-Fullstack/demo/frontend/landingPage.html")   // Live Server IP
 
 public class UserController {
 
     @Autowired
     private UserService userService;
+
+
+    @GetMapping
+    public String defaultMapping() {
+        return "Users endpoint is active!";
+    }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> loginData) {

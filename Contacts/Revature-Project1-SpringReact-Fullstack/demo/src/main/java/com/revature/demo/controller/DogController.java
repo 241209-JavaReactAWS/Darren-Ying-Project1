@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/dogs")  // Base URL for this controller
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class DogController {
 
     @Autowired
