@@ -34,7 +34,3 @@ Item CRUD Workflow:
 Admin: Full access to all items (Add, Edit, Delete).
 User: Restricted access (e.g., View and Add only).
 ```
-
-Sample templates of application scenarios, which deployed on the Heroko platform:
-https://bloominstituteoftechnology.github.io/W_S11_Fetch_Project/
-https://advanced-apps-articles.herokuapp.com/
