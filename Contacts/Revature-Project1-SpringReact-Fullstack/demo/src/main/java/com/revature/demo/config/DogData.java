@@ -15,15 +15,19 @@ public class DogData {
 
         return args -> {
             dogRepository.saveAll(List.of(
-                    new Dog(2, "Max", "Bulldog", "Adopted", "Female"),
-                    new Dog(3, "Charlie", "Beagle", "Available", "Male"),
-                    new Dog(4, "Lucy", "Poodle", "Available", "Female"),
-                    new Dog(5, "Daisy", "Cocker Spaniel", "Adopted", "Female"),
-                    new Dog(6, "Molly", "Labrador", "Available", "Female"),
-                    new Dog(7, "Rockey", "Rottweiler", "Available", "Male"),
-                    new Dog(8, "Bella", "Boxer", "Adopted", "Female"),
-                    new Dog(9, "Bailey", "Dalmatian", "Available", "Male"),
-                    new Dog(10, "Coco", "Chihuahua", "Available", "Female")
+                    new Dog(1, "Max", "Bulldog", "Adopted", "Female"),
+                    new Dog(2, "Charlie", "Beagle", "Available", "Male"),
+                    new Dog(3, "Lucy", "Poodle", "Available", "Female"),
+                    new Dog(4, "Daisy", "Cocker Spaniel", "Adopted", "Female"),
+                    new Dog(5, "Molly", "Labrador", "Available", "Female"),
+                    new Dog(6, "Rockey", "Rottweiler", "Available", "Male"),
+                    new Dog(7, "Bella", "Boxer", "Adopted", "Female"),
+                    new Dog(8, "Bailey", "Dalmatian", "Available", "Male"),
+                    new Dog(9, "Coco", "Chihuahua", "Available", "Female"),
+                    new Dog(10, "Lola", "Shiba Inu", "Adopted", "Male"),
+                    new Dog(11, "Milo", "French Bulldog", "Available", "Female"),
+                    new Dog(12, "Toby", "Golden Retriever", "Adopted", "Male"),
+                    new Dog(13, "Sassy", "German Shepherd", "Available", "Female")
             ));
 
         };

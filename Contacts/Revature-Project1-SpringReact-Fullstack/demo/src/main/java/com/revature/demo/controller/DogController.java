@@ -1,5 +1,6 @@
 package com.revature.demo.controller;
 
+import com.revature.demo.controller.HomeController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.revature.demo.model.Dog;
@@ -23,10 +24,10 @@ public class DogController {
         return dogRepository.findAll();
     }
 
-    @PostMapping
-    public Dog addDog(@RequestBody Dog dog) {
 
-        return dogRepository.save(dog);
+    @PostMapping("/addDog")
+    public Dog addDog(@RequestBody Dog newDog) {
+        return dogRepository.save(newDog);
     }
 }
 
