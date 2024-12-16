@@ -1,75 +1,105 @@
-// app.js
-import { renderDogList } from './renderDogList.js';
-
 // Elements
 const landingPage = document.getElementById('landing-page');
-const adminDashboard = document.getElementById('admin-dashboard');
-const userDashboard = document.getElementById('user-dashboard');
+const dashboard = document.getElementById('dashboard');
 const loginButton = document.getElementById('login-button');
-const logoutButtonAdmin = document.getElementById('logout-button');
-const logoutButtonUser = document.getElementById('logout-button-user');
-const addDogButton = document.getElementById('add-dog-button');
-const dogListAdmin = document.getElementById('dog-list');
-const dogListUser = document.getElementById('dog-list-user');
+const logoutButton = document.getElementById('logout-button');
+const dogListContainer = document.getElementById('dog-list');
+const usernameInput = document.getElementById('username');
+const passwordInput = document.getElementById('password');
 
-// Login function
-loginButton.addEventListener('click', () => {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const role = document.getElementById('role').value;
+// API Base URL
+const API_BASE_URL = 'http://localhost:8080';
 
-    // Basic validation
-    if (!username || !password || !role) {
-        alert('Please fill in all fields.');
+// Fetch Dog List from Backend API
+const fetchDogList = async () => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/dogs`);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch dogs: ${response.status}`);
+        }
+        const dogs = await response.json();
+        return dogs;
+    } catch (error) {
+        console.error('Error fetching dog list:', error);
+        return [];
+    }
+};
+
+// Render Dog List to Dashboard
+const renderDogList = async () => {
+    dogListContainer.innerHTML = 'Loading...'; // Show loading message
+    const dogs = await fetchDogList();
+
+    // Clear loading message and render the list
+    dogListContainer.innerHTML = '';
+    if (dogs.length === 0) {
+        dogListContainer.innerHTML = '<p>No dogs found.</p>';
         return;
     }
 
-    // Display appropriate dashboard based on role
-    if (role === 'admin') {
-        showAdminDashboard();
-    } else if (role === 'user') {
-        showUserDashboard();
-    } else {
-        alert('Invalid role selected.');
+    dogs.forEach((dog) => {
+        const dogCard = document.createElement('div');
+        dogCard.className = 'dog-card';
+        dogCard.innerHTML = `
+            <h3>${dog.name}</h3>
+            <p>Breed: ${dog.breed}</p>
+            <p>Status: ${dog.status}</p>
+            <p>Gender: ${dog.gender}</p>
+        `;
+        dogListContainer.appendChild(dogCard);
+    });
+};
+
+// Handle Login with API Integration
+const handleLogin = async () => {
+    const username = usernameInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    if (!username || !password) {
+        alert('Please enter both username and password.');
+        return;
     }
-});
 
-// Show Admin Dashboard
-const showAdminDashboard = () => {
-    landingPage.style.display = 'none';
-    adminDashboard.style.display = 'block';
-    renderDogList(dogListAdmin, true);
+    try {
+        // Send login request to backend
+        const response = await fetch(`${API_BASE_URL}/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
+        });
+
+        if (response.ok) {
+            // Successful login
+            const result = await response.json();
+            console.log('Login successful:', result);
+
+            landingPage.style.display = 'none'; // Hide landing page
+            dashboard.style.display = 'block'; // Show dashboard
+            await renderDogList(); // Fetch and display dog list
+        } else {
+            const error = await response.json();
+            alert(`Login failed: ${error.message}`);
+        }
+    } catch (error) {
+        console.error('Error during login:', error);
+        alert('An error occurred during login. Please try again.');
+    }
 };
 
-// Show User Dashboard
-const showUserDashboard = () => {
-    landingPage.style.display = 'none';
-    userDashboard.style.display = 'block';
-    renderDogList(dogListUser, false);
+// Handle Logout
+const handleLogout = () => {
+    dashboard.style.display = 'none'; // Hide dashboard
+    landingPage.style.display = 'block'; // Show landing page
+
+    // Clear username and password inputs
+    usernameInput.value = '';
+    passwordInput.value = '';
 };
 
-// Logout Function
-logoutButtonAdmin.addEventListener('click', () => {
-    adminDashboard.style.display = 'none';
-    landingPage.style.display = 'block';
+// Event Listeners
+document.addEventListener('DOMContentLoaded', () => {
+    loginButton.addEventListener('click', handleLogin);
+    logoutButton.addEventListener('click', handleLogout);
 });
-
-logoutButtonUser.addEventListener('click', () => {
-    userDashboard.style.display = 'none';
-    landingPage.style.display = 'block';
-});
-
-
-
-// set role state   [role, setRole] = useState("")
-/*
-[isLoggedIn, setIsLoggedIn] = useState(false)
-
-----------
-handleLogin = () => {
-    if(role) {
-    setIsLoggedIn(true)}}
-
-    if(isLoggedIn) {
-    return <Dashboard role={role}}
-*/

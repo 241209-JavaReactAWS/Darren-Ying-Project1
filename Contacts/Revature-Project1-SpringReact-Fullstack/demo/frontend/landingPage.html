@@ -11,56 +11,32 @@
     <div id="landing-page">
         <header>
             <h1>Welcome to the Dog Shelter App!</h1>
-            <p>Please sign in to continue.</p>
+            <p>Click "Login" to view the dog list.</p>
         </header>
 
         <main>
             <div class="login-container">
-                <h2>Log In</h2>
-                <!-- Username Input -->
-                <label for="username">Username</label>
-                <input id="username" type="text" placeholder="Enter your username" />
-
-                <!-- Password Input -->
-                <label for="password">Password</label>
-                <input id="password" type="password" placeholder="Enter your password" />
-
-                <!-- Dropdown for Login Role -->
-                <label for="role">Choose Login Role</label>
-                <select id="role">
-                    <option value="">Select a role</option>
-                    <option value="admin">Admin</option>
-                    <option value="user">User</option>
-                </select>
-
-                <!-- Submit Button -->
+                <!-- Username and Password Input -->
+                <label for="username">Username:</label>
+                <input type="text" id="username" placeholder="Enter your username">
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter your password">
+                
                 <button id="login-button" class="submit-button">Log In</button>
             </div>
         </main>
     </div>
 
-    <!-- Admin Dashboard -->
-    <div id="admin-dashboard" style="display: none;">
+    <!-- Dashboard -->
+    <div id="dashboard" style="display: none;">
         <header>
-            <h1>Admin Dashboard</h1>
+            <h1>Dog Shelter Dashboard</h1>
             <button id="logout-button">Log Out</button>
         </header>
         <main>
             <h2>Dog List</h2>
             <div id="dog-list"></div>
-            <button id="add-dog-button">Add New Dog</button>
-        </main>
-    </div>
-
-    <!-- User Dashboard -->
-    <div id="user-dashboard" style="display: none;">
-        <header>
-            <h1>User Dashboard</h1>
-            <button id="logout-button-user">Log Out</button>
-        </header>
-        <main>
-            <h2>Available Dogs for Adoption</h2>
-            <div id="dog-list-user"></div>
         </main>
     </div>
 
@@ -68,7 +44,6 @@
         <p>&copy; 2024 Dog Shelter App. All Rights Reserved.</p>
     </footer>
 
-     <!-- Link JavaScript files -->
-     <script type="module" src="js/app.js"></script>
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>
