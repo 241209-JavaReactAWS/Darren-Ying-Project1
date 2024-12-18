@@ -3,6 +3,7 @@ package com.revature.demo.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "dogs")
 public class Dog {
 
     @Id
