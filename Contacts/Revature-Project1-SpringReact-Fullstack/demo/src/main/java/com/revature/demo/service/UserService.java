@@ -74,4 +74,18 @@ public class UserService {
     }
 
 
+    public Set<Dog> getFavoriteDogsForUser(int userId) {
+        // Fetch the user by ID
+        Optional<User> possibleUser = userRepository.findById(userId);
+
+        if (possibleUser.isEmpty()) {
+            return null; // User not found
+        }
+
+        // Return the user's liked dogs
+        return possibleUser.get().getLikedDogs();
+    }
+
+
+
 }

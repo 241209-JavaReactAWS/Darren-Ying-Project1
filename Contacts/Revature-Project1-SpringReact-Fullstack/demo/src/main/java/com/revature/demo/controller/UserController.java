@@ -1,5 +1,6 @@
 package com.revature.demo.controller;
 
+import com.revature.demo.model.Dog;
 import com.revature.demo.model.User;
 import com.revature.demo.service.UserService;
 import jakarta.servlet.http.HttpSession;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.Set;
 
 
 @RestController
@@ -33,7 +35,7 @@ public class UserController {
     then, reaccess their info/endpoints
 
     JWTs/ Web Tokens
-    - Client based /    The backend will genearte a token and send it back upon a successful login attempt.  This token
+    - Client based /    The backend will generate a token and send it back upon a successful login attempt.  This token
     is stored by the frontend and decrypted by the backend as needed to get the appropriate info
     ---  Adheres more to REST constraints
 
@@ -91,7 +93,7 @@ public class UserController {
     }
 
     //TODO ADD Favorite dogs TO User
-    @PostMapping("/{userId}")
+    @PostMapping("/{userId}/favorites")
     public ResponseEntity<User> addFavoriteDogs(HttpSession session, @PathVariable int userId) {
         // Implement the method logic here
         //Validate that user is logged in, then one check if the session is brand new
@@ -110,6 +112,30 @@ public class UserController {
         }
         return ResponseEntity.ok(returnedUser);
     }
+
+//    //TODO Retrieve Favorite Dogs for a User
+//    @GetMapping("/{userId}/favorites")
+//    public ResponseEntity<User> getFavoriteDogs(HttpSession session, @PathVariable int userId) {
+//        // Validate session
+//        if (session.isNew() || session.getAttribute("username") == null) {
+//            return ResponseEntity.status(401).build(); // User not logged in
+//        }
+//
+//        // Check if the logged-in user matches the requested userId
+//        String loggedInUser = userService.getUserByUsername((String)session.getAttribute("username");
+//        if (loggedInUsername == null || loggedInUsername.getUserId() != userId) {
+//            return ResponseEntity.status(403).build(); // Forbidden
+//        }
+//
+//        // Fetch the favorite dogs for the user
+//        Set<Dog> favoriteDogs = userService.getFavoriteDogsForUser(userId);
+//        if (favoriteDogs == null) {
+//            return ResponseEntity.status(404).build(); // User or favorite dogs not found
+//        }
+//
+//        return ResponseEntity.ok(favoriteDogs);
+//    }
+//
 
 
 }
