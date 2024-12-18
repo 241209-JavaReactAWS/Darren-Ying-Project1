@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -64,7 +65,11 @@ public class UserController {
         //OTHERWISE, success login return
         return ResponseEntity.ok(returnedUser);
     }
+@GetMapping
+    public User getAllUsers() {
+        return userService.getAllUsers();
 
+    }
         /*
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> loginData) {

@@ -47,6 +47,10 @@ public class UserService {
         return null;
     }
 
+    public User getAllUsers() {
+        return userRepository.findAll().get(0);
+    }
+
     public User addDogToFavorites(String username, int id) {
         //Look up the user
         Optional<User> possibleUser = userRepository.getUserByUsername(username);
