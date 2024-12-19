@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DogService {
@@ -21,6 +22,11 @@ public class DogService {
     public List<Dog> getAllDogs() {
 
         return dogRepository.findAll();
+    }
+
+    //Fogot to add this method to fetch a DOG by its ID  /dogs/{dogId}
+    public Optional<Dog> getDogById(int id) {
+        return dogRepository.findById(id);
     }
 
     public Dog addDog(Dog newDog) {

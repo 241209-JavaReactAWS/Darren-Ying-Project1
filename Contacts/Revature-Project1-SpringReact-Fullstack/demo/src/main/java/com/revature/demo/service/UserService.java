@@ -7,6 +7,7 @@ import com.revature.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -47,8 +48,8 @@ public class UserService {
         return null;
     }
 
-    public User getAllUsers() {
-        return userRepository.findAll().get(0);
+    public List<User> getAllUsers() {
+         return userRepository.findAll();
     }
 
     public User addDogToFavorites(String username, int id) {

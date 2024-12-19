@@ -1,5 +1,8 @@
 package com.revature.demo.config;
 
+import com.revature.demo.model.Role;
+import com.revature.demo.model.User;
+import com.revature.demo.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,10 +11,10 @@ import com.revature.demo.repository.DogRepository;
 
 import java.util.List;
 @Configuration
-public class DogData {
+public class data {
 
     @Bean
-    CommandLineRunner initDatabase(DogRepository dogRepository) {
+    CommandLineRunner initDatabase(DogRepository dogRepository, UserRepository userRepository) {
 
         return args -> {
             dogRepository.saveAll(List.of(
@@ -29,6 +32,7 @@ public class DogData {
                     new Dog(12, "Toby", "Golden Retriever", "Adopted", "Male"),
                     new Dog(13, "Sassy", "German Shepherd", "Available", "Female")
             ));
+
 
         };
     }

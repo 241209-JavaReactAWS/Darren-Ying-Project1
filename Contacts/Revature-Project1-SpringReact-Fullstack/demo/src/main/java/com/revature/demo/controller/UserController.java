@@ -41,8 +41,6 @@ public class UserController {
     ---  Adheres more to REST constraints
 
      */
-
-
     // TODO LOGIN
     @PostMapping("/login")   //http://localhost:8080/users/login
 
@@ -65,31 +63,9 @@ public class UserController {
         //OTHERWISE, success login return
         return ResponseEntity.ok(returnedUser);
     }
-@GetMapping
-    public User getAllUsers() {
-        return userService.getAllUsers();
 
-    }
-        /*
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> loginData) {
-        String username = loginData.get("username");
-        String password = loginData.get("password");
 
-        boolean isAuthenticated = userService.authenticate(username, password);
-
-        if (isAuthenticated) {
-            //return ResponseEntity.ok().build();
-            return ResponseEntity.ok(Map.of("message", "Login successful"));
-        } else {
-           // return ResponseEntity.badRequest().build();
-            return ResponseEntity.status(401).body(Map.of("message", "Login failed"));
-        }
-    }
-
-    */
-
-    //TODO LOGOUT
+//TODO LOGOUT
     @PostMapping("/logout")
     public ResponseEntity<?> logout(HttpSession session) {
         //This is for invalidating the session to log a user out
@@ -118,7 +94,19 @@ public class UserController {
         return ResponseEntity.ok(returnedUser);
     }
 
-//    //TODO Retrieve Favorite Dogs for a User
+    @GetMapping   //http://localhost:8080/users
+    public ResponseEntity<List<User>> getAllUsers(HttpSession session) {
+
+        if (session.isNew() || session.getAttribute("username") == null) {
+            return ResponseEntity.status(401).build();
+
+        }
+       List<User> allUsers = userService.getAllUsers();
+        return ResponseEntity.ok(allUsers);
+    }
+
+
+
 //    @GetMapping("/{userId}/favorites")
 //    public ResponseEntity<User> getFavoriteDogs(HttpSession session, @PathVariable int userId) {
 //        // Validate session

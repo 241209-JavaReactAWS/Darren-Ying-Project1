@@ -11,6 +11,7 @@ import com.revature.demo.repository.DogRepository;
 
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -33,6 +34,15 @@ public class DogController {
         return dogService.getAllDogs();
     }
 
+    @GetMapping("/{dogId}")
+    public ResponseEntity<Dog> getDogById(@PathVariable int dogId) {
+        Optional<Dog> dog = dogService.getDogById(dogId);
+
+        if(dog.isEmpty()) {
+            return ResponseEntity.status(404).build();
+        }
+        return ResponseEntity.ok(dog.get());
+    }
 
     // TO ADD a new Dog (ADMIN ONLY)
     @PostMapping("/addDog")
@@ -61,11 +71,13 @@ public class DogController {
         return ResponseEntity.status(201).body(returnedDog);
     }
 
+   // @PutMapping("/{dogId}")
 
-    @DeleteMapping("/{dogId}")
-    public void deleteDog(@PathVariable int dogId) {
-        dogService.deleteDogById(dogId);
-    }
+//
+//    @DeleteMapping("/{dogId}")
+//    public void deleteDog(@PathVariable int dogId) {
+//        dogService.deleteDogById(dogId);
+//    }
 
 }
 
