@@ -32,9 +32,9 @@ public class userData {
             likedDogs2.add(dog2);
 
             // Create User objects
-            User adminUser = new User(1, "admin", "password123", likedDogs1, Role.ADMIN);
-            User user1 = new User(2, "john", "john123", likedDogs2, Role.USER);
-            User user2 = new User(3, "jane", "jane123", new HashSet<>(), Role.USER);
+            User adminUser = new User(1, "ADMIN", "admin12345", likedDogs1, Role.ADMIN);
+            User user1 = new User(2, "Bob", "bob8888", likedDogs2, Role.USER);
+            User user2 = new User(3, "Lucy", "lucy0000", new HashSet<>(), Role.USER);
 
             // Save Users to the database
             userRepository.saveAll(List.of(adminUser, user1, user2));

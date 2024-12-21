@@ -35,6 +35,7 @@ public class DogController {
     }
 
     @GetMapping("/{dogId}")
+
     public ResponseEntity<Dog> getDogById(@PathVariable int dogId) {
         Optional<Dog> dog = dogService.getDogById(dogId);
 
@@ -45,31 +46,86 @@ public class DogController {
     }
 
     // TO ADD a new Dog (ADMIN ONLY)
+
     @PostMapping("/addDog")
     public ResponseEntity<Dog> addDogHandler(HttpSession session, @RequestBody Dog newDog) {
-        //Check that the user is logged in
-        if(session.isNew() || session.getAttribute("username") == null) {
+        System.out.println("Checking session and role...");
+        if (session.isNew() || session.getAttribute("username") == null) {
+            System.out.println("Unauthorized: User not logged in.");
             return ResponseEntity.status(401).build();
-            //User not logged in yet
         }
 
-        // Check the validation if logged in but need to make sure they have the right permission to add a dog
-        if(session.getAttribute("role") != Role.ADMIN) {
-            // This means the user signed in but NOT an ADMIN
+        if (!Role.ADMIN.equals(session.getAttribute("role"))) {
+            System.out.println("Forbidden: User is not an ADMIN.");
             return ResponseEntity.status(403).build();
         }
 
-        // if made it to this point, the user is logged in and the user is an ADMIN
-        //Then add the dog tot he database
+        System.out.println("Adding new dog...");
         Dog returnedDog = dogService.addDog(newDog);
 
-        if(returnedDog == null) {
+        if (returnedDog == null) {
+            System.out.println("Bad Request: Failed to add dog.");
             return ResponseEntity.badRequest().build();
         }
 
-        // status code 201, dog Created
+        System.out.println("Dog added successfully!");
         return ResponseEntity.status(201).body(returnedDog);
     }
+
+    @PutMapping("/{dogId}")
+    public ResponseEntity<Dog> updateDogHandler(@PathVariable int dogId, @RequestBody Dog updatedDog) {
+        Optional<Dog> existingDog = dogService.getDogById(dogId);
+
+        if (existingDog.isEmpty()) {
+            return ResponseEntity.status(404).build();
+        }
+
+        // Ensure the ID of the dog being updated matches the ID in the path
+        updatedDog.setId(dogId);
+
+        Dog savedDog = dogService.updateDog(updatedDog);
+        return ResponseEntity.ok(savedDog);
+    }
+
+
+    @DeleteMapping("/{dogId}")
+    public ResponseEntity<?> deleteDogHandler(@PathVariable int dogId) {
+        Optional<Dog> existingDog = dogService.getDogById(dogId);
+
+        if (existingDog.isEmpty()) {
+            return ResponseEntity.status(404).build();
+        }
+
+        dogService.deleteDogById(dogId);
+        return ResponseEntity.noContent().build();
+    }
+
+
+//    @PostMapping("/addDog")
+//    public ResponseEntity<Dog> addDogHandler(HttpSession session, @RequestBody Dog newDog) {
+//        //Check that the user is logged in
+//        if(session.isNew() || session.getAttribute("username") == null) {
+//            return ResponseEntity.status(401).build();
+//            //User not logged in yet
+//        }
+//
+//        // Check the validation if logged in but need to make sure they have the right permission to add a dog
+//        if(session.getAttribute("role") != Role.ADMIN) {
+//            // This means the user signed in but NOT an ADMIN
+//            return ResponseEntity.status(403).build();
+//        }
+//
+//        // if made it to this point, the user is logged in and the user is an ADMIN
+//        //Then add the dog tot he database
+//        Dog returnedDog = dogService.addDog(newDog);
+//
+//        if(returnedDog == null) {
+//            return ResponseEntity.badRequest().build();
+//        }
+//
+//        // status code 201, dog Created
+//        return ResponseEntity.status(201).body(returnedDog);
+//    }
 
    // @PutMapping("/{dogId}")
 
