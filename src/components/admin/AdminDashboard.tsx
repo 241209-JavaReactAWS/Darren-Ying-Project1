@@ -110,6 +110,9 @@ const deleteDog = async (dogId: number) => {
                       >
                         Delete
                       </button>
+                      
+                      <br></br>
+                      <br></br>
                       <button
                         className="update-btn"
                         onClick={() => editDog(dog)} // Edit dog)}
