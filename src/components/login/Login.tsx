@@ -49,14 +49,18 @@ function Login() {
     <div>
       <main>
         {/* <h3>Login Here</h3> */}
+        <br></br>
         <figure>
           <img
             id="pic"
             src="https://images.pexels.com/photos/1629781/pexels-photo-1629781.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt="A cute dog"
+            alt="A cute dog" 
+            
+          
           />
           <figcaption></figcaption>
         </figure>
+        <br></br>
         {/* <p>
           Welcome to our Dog Shelter!
         </p> */}
@@ -90,6 +94,7 @@ function Login() {
           </label>
           <button type="submit">Log In</button>
         </form>
+        <br></br>
       </main>
     </div>
   );
