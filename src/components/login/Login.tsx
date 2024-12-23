@@ -36,7 +36,7 @@ function Login() {
       if (userData.role === "ADMIN") {
         navigate("/admin");
       } else if (userData.role === "USER") {
-        alert("You have limited access. Redirecting to the shelter dashboard.");
+        // alert("You have limited access. Redirecting to the shelter dashboard.");
         navigate("/shelter");
       }
     } catch (err) {
