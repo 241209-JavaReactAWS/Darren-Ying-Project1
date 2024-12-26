@@ -1,18 +1,21 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './App.css'
-import AdminDashboard from './components/admin/AdminDashboard'
-import Footer from './components/footer/Footer'
-import Header from './components/header/Header'
-import Login from './components/login/Login'
-import Nav from './components/nav/Nav'
-import DogShelter from './components/shelter/DogShelter'
-import AddDog from './components/dog-update/AddDog';
 import React, { createContext, useState } from "react";
-import Logout from "./components/logout/Logout"; // Import the Logout component
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import Header from "./components/header/Header";
+import Nav from "./components/nav/Nav";
+import Footer from "./components/footer/Footer";
 
+import Login from "./components/login/Login";
+import AdminDashboard from "./components/admin/AdminDashboard";
+import AddDog from "./components/dog-update/AddDog";
+import DogShelter from "./components/shelter/DogShelter";
+import FavoriteDogs from "./components/shelter/FavoriteDogs";
+import Logout from "./components/logout/Logout";
 
-// Define the context structure
+import { FavoritesProvider } from "./components/context/FavoriteContext"; // Favorite dogs context
+import "./App.css"; // Global CSS file
+
+// Define the context structure for authentication
 export const authContext = createContext<{
   username: string;
   role: string;
@@ -21,27 +24,46 @@ export const authContext = createContext<{
 } | null>(null);
 
 function App() {
+  // State for authentication (username and role)
   const [username, setUsername] = useState<string>("");
   const [role, setRole] = useState<string>("");
 
   return (
     <>
+      {/* Header Component */}
       <Header />
 
+      {/* Authentication Context */}
       <authContext.Provider value={{ username, role, setUsername, setRole }}>
-        <BrowserRouter>
-          <Nav /> {/* Nav can now access authContext for role-based rendering */}
+        {/* Favorites Provider for global state */}
+        <FavoritesProvider>
+          <BrowserRouter>
+            {/* Navigation Bar */}
+            <Nav />
 
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/admin/addDog" element={<AddDog />} />
-            <Route path="/dogs" element={<DogShelter />} />
-            <Route path="/logout" element={<Logout />} /> {/* Add Logout route */}
-          </Routes>
-        </BrowserRouter>
+            {/* Define Application Routes */}
+            <Routes>
+              {/* Login Page */}
+              <Route path="/" element={<Login />} />
+
+              {/* Admin Dashboard */}
+              <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/admin/addDog" element={<AddDog />} />
+
+              {/* Dogs Shelter */}
+              <Route path="/dogs" element={<DogShelter />} />
+
+              {/* Favorites Page */}
+              <Route path="/favorites" element={<FavoriteDogs />} />
+
+              {/* Logout Page */}
+              <Route path="/logout" element={<Logout />} />
+            </Routes>
+          </BrowserRouter>
+        </FavoritesProvider>
       </authContext.Provider>
 
+      {/* Footer Component */}
       <Footer />
     </>
   );

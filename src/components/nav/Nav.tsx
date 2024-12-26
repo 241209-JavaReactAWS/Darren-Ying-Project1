@@ -30,6 +30,11 @@ function Nav() {
           <li>
             <Link to="/dogs">Dogs in Shelter</Link>
           </li>
+          <li>
+            <Link to="/favorites" className="favorites-link">
+              My Favorite Dogs
+            </Link>
+          </li>
           {auth?.role === "ADMIN" && (
             <>
               <li>
