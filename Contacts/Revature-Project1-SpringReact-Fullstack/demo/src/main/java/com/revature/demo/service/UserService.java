@@ -32,7 +32,7 @@ public class UserService {
 //    }
 
     public User login(String username, String password) {
-        Optional<User> possibleUser = userRepository.getUserByUsername(username);
+        Optional<User> possibleUser = userRepository.findByUsername(username);
 
         //Check to ensure user exists
         if (possibleUser.isEmpty()) {
@@ -52,45 +52,57 @@ public class UserService {
          return userRepository.findAll();
     }
 
-    public User addDogToFavorites(String username, int id) {
-        //Look up the user
-        Optional<User> possibleUser = userRepository.getUserByUsername(username);
+    public User addDogToFavorites(String username, int dogId) {
+        Optional<User> possibleUser = userRepository.findByUsername(username);
+        Optional<Dog> possibleDog = dogRepository.findById(dogId);
 
-        // Look up the dog
-        Optional<Dog> possibleDog = dogRepository.findById(id);
-
-        //Validate both exists
-        if(possibleUser.isEmpty() || possibleDog.isEmpty()) {
+        if (possibleUser.isEmpty() || possibleDog.isEmpty()) {
+            System.out.println("User or Dog not found");
             return null;
         }
 
-        //Extract the values now that I know they exist
         User returnedUser = possibleUser.get();
         Dog returnedDog = possibleDog.get();
 
-        //Add the dog to the list of favorites
         Set<Dog> favorites = returnedUser.getLikedDogs();
+        if (favorites.contains(returnedDog)) {
+            System.out.println("Dog is already in favorites");
+            return returnedUser; // No need to add again
+        }
+
         favorites.add(returnedDog);
         returnedUser.setLikedDogs(favorites);
 
-        // Save the user now that the info is updated
-        return userRepository.save(returnedUser);
+        // Save the updated user with new favorites
+        User updatedUser = userRepository.save(returnedUser);
 
+        System.out.println("Dog added to favorites successfully");
+        return updatedUser;
     }
 
 
-    public Set<Dog> getFavoriteDogsForUser(int userId) {
-        // Fetch the user by ID
-        Optional<User> possibleUser = userRepository.findById(userId);
+//    public Set<Dog> getFavoriteDogsForUser(int userId) {
+//        // Fetch the user by ID
+//        Optional<User> possibleUser = userRepository.findById(userId);
+//
+//        if (possibleUser.isEmpty()) {
+//            return null; // User not found
+//        }
+//
+//        // Return the user's liked dogs
+//        return possibleUser.get().getLikedDogs();
+//    }
 
-        if (possibleUser.isEmpty()) {
-            return null; // User not found
+
+    public User getUserByUsername(String username) {
+        // Use the repository to fetch the user by username
+        Optional<User> user = userRepository.findByUsername(username);
+
+        // Return the user if found, or throw an exception
+        if (user.isPresent()) {
+            return user.get();
+        } else {
+            throw new RuntimeException();
         }
-
-        // Return the user's liked dogs
-        return possibleUser.get().getLikedDogs();
     }
-
-
-
 }

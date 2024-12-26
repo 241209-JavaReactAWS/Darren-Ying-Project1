@@ -4,11 +4,9 @@ import jakarta.persistence.*;
 
 import java.util.Set;
 
-
 @Entity
 @Table(name = "users")
-public class User{
-
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,23 +16,15 @@ public class User{
     private String username;
     private String password;
 
-
-    //Annotations for relationships
-    //one customer can have many liked dogs during the shopping, making selections for favorite dogs that wish to shelter
-
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JoinTable(
             name = "user_dog", // Join table name
             joinColumns = @JoinColumn(name = "user_id"), // References `id` in the User table
             inverseJoinColumns = @JoinColumn(name = "dog_id", referencedColumnName = "id") // Maps to `id` in the Dog table
     )
-    private Set<Dog> likedDogs ;
+    private Set<Dog> likedDogs;
 
-
-
-    //This stores the user role in the table as a string, default is a number
     @Enumerated(EnumType.STRING)
-
     private Role role;
 
     public User() {}
@@ -47,7 +37,7 @@ public class User{
         this.role = role;
     }
 
-
+    // Getters and setters
     public int getUserId() {
         return userId;
     }

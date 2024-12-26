@@ -75,24 +75,33 @@ public class UserController {
 
     //TODO ADD Favorite dogs TO User
     @PostMapping("/{userId}/favorites")
-    public ResponseEntity<User> addFavoriteDogs(HttpSession session, @PathVariable int userId) {
-        // Implement the method logic here
-        //Validate that user is logged in, then one check if the session is brand new
-        //Also check if the user has a username stored
-        if(session.isNew() || session.getAttribute("username") == null) {
-            return ResponseEntity.status(401).build();
-            //Status code indicates the user is not logged
-            //403 is showing the user IS logged in but has the wrong permissions
+    public ResponseEntity<User> addFavoriteDogs(HttpSession session, @PathVariable int userId, @RequestBody Map<String, Integer> requestBody) {
+        if (session.isNew() || session.getAttribute("username") == null) {
+            return ResponseEntity.status(401).build(); // User not logged in
         }
 
-        //If the user is logged in
-        User returnedUser = userService.addDogToFavorites( (String) session.getAttribute("username"), userId);
-        //Now checking if the method was handled correctly
-        if(returnedUser == null) {
-            return ResponseEntity.badRequest().build();
+        String sessionUsername = (String) session.getAttribute("username");
+        User sessionUser = userService.getUserByUsername(sessionUsername);
+
+        if (sessionUser == null || sessionUser.getUserId() != userId) {
+            return ResponseEntity.status(403).build(); // Forbidden
         }
-        return ResponseEntity.ok(returnedUser);
+
+        Integer dogId = requestBody.get("dogId");
+        if (dogId == null) {
+            return ResponseEntity.badRequest().body(null); // No dogId provided
+        }
+
+        User updatedUser = userService.addDogToFavorites(sessionUsername, dogId);
+
+        if (updatedUser == null) {
+            return ResponseEntity.status(404).body(null); // User or Dog not found
+        }
+
+        return ResponseEntity.ok(updatedUser);
     }
+
+
 
     @GetMapping   //http://localhost:8080/users
     public ResponseEntity<List<User>> getAllUsers(HttpSession session) {
