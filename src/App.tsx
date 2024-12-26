@@ -19,14 +19,19 @@ import "./App.css"; // Global CSS file
 export const authContext = createContext<{
   username: string;
   role: string;
+  userId: number | null; // Add userId as part of the context
   setUsername: (username: string) => void;
   setRole: (role: string) => void;
+  setUserId: (userId: number | null) => void;
 } | null>(null);
+
 
 function App() {
   // State for authentication (username and role)
   const [username, setUsername] = useState<string>("");
   const [role, setRole] = useState<string>("");
+  const [userId, setUserId] = useState<number | null>(null); // Add userId state
+
 
   return (
     <>
@@ -34,7 +39,7 @@ function App() {
       <Header />
 
       {/* Authentication Context */}
-      <authContext.Provider value={{ username, role, setUsername, setRole }}>
+      <authContext.Provider value={{ username, role, userId, setUsername, setRole, setUserId }}>
         {/* Favorites Provider for global state */}
         <FavoritesProvider>
           <BrowserRouter>

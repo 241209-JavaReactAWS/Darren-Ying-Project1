@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
+import { authContext } from "../../App"; 
+
 
 function Login() {
+  const auth = useContext(authContext); // Access authContext
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState(""); // Role state to capture user selection
@@ -21,23 +24,27 @@ function Login() {
     try {
       const response = await axios.post(
         "http://localhost:8080/users/login",
-        { username, password, role },
+        { username, password }, // Role is not passed here, it's derived from the backend
         { withCredentials: true }
       );
-
+    
       const userData = response.data;
-
+    
       // Debugging login success
       console.log("Login successful:", userData);
-
+    
+      // Set the context values for the logged-in user
+      auth?.setUsername(userData.username);
+      auth?.setRole(userData.role);
+      auth?.setUserId(userData.userId); // Assuming userId is part of the response
+    
       alert(`Welcome, ${userData.username}! Role: ${userData.role}`);
-
+    
       // Navigate based on role
       if (userData.role === "ADMIN") {
         navigate("/admin");
       } else if (userData.role === "USER") {
-        // alert("You have limited access. Redirecting to the shelter dashboard.");
-        navigate("/shelter");
+        navigate("/dogs"); // Redirect to the shelter dashboard for users
       }
     } catch (err) {
       console.error("Login failed:", err);
@@ -98,6 +105,7 @@ function Login() {
       </main>
     </div>
   );
+
 }
 
 export default Login;

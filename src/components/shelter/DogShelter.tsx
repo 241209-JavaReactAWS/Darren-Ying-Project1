@@ -1,23 +1,35 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { authContext } from "../../App";
+import axios from "axios";
 import "./DogShelter.css";
 
-// Define the Dog type for TypeScript
-interface Dog {
-  id: number;
-  name: string;
-  breed: string;
-  status: string;
-  gender: string;
-  image: string;
-}
-
 function DogShelter() {
-  const [favoriteDogs, setFavoriteDogs] = useState<Dog[]>([]);
-  const navigate = useNavigate();
+  const auth = useContext(authContext);
+
+  // Add a dog to favorites
+  const addToFavorites = async (dogId: number) => {
+    if (!auth?.username || auth?.role !== "USER") {
+      alert("You must be logged in as a user to save favorites!");
+      return;
+    }
+
+    try {
+        const userId = auth.userId; // No more error here
+        const response = await axios.post(
+          `http://localhost:8080/users/${userId}/favorites`,
+          { dogId }, // Send the dogId in the request body
+          { withCredentials: true } // Include session credentials
+        );
+        alert(`${response.data.username} has added a dog to favorites!`);
+      } catch (error) {
+        console.error("Error adding dog to favorites:", error);
+        alert("Failed to add the dog to favorites. Please try again.");
+      }
+    };
+
 
   // Dog data with images
-  const dogs: Dog[] = [
+  const dogData = [
     {
       id: 1,
       name: "Max",
@@ -124,30 +136,12 @@ function DogShelter() {
     },
   ];
 
-  // Add to favorites
-  function addToFavorites(dog: Dog) {
-    if (favoriteDogs.find((fav) => fav.id === dog.id)) {
-      alert(`${dog.name} is already in your favorites!`);
-      return;
-    }
-    setFavoriteDogs([...favoriteDogs, dog]);
-    alert(`${dog.name} added to favorites!`);
-  }
-
-  // Navigate to Favorites
-  function goToFavorites() {
-    navigate("/favorites", { state: { favoriteDogs } });
-  }
-
   return (
     <div>
       <main>
         <h3>Adopt A Dog Today!</h3>
-        <button className="favorites-button" onClick={goToFavorites}>
-          View Favorites
-        </button>
         <section className="dog-grid">
-          {dogs.map((dog) => (
+          {dogData.map((dog) => (
             <div className="dog-card" key={dog.id}>
               <img src={dog.image} alt={`Dog ${dog.name}`} />
               <div className="dog-info">
@@ -157,10 +151,10 @@ function DogShelter() {
                 <p>Status: {dog.status}</p>
                 <p>Gender: {dog.gender}</p>
                 <button
-                  className="add-to-favorite-btn"
-                  onClick={() => addToFavorites(dog)}
+                  className="add-favorite-btn"
+                  onClick={() => addToFavorites(dog.id)}
                 >
-                  Add to Favorite
+                  Add to Favorites
                 </button>
               </div>
             </div>
